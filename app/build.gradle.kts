@@ -9,9 +9,16 @@ android {
         applicationId = "br.igreja.avemarias"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "1.2"
     }
+    signingConfigs {
+        create("fixa") {
+            storeFile = file("avemarias.p12"); storePassword = "avemarias"
+            keyAlias = "avemarias"; keyPassword = "avemarias"; storeType = "pkcs12"
+        }
+    }
+    buildTypes { getByName("debug") { signingConfig = signingConfigs.getByName("fixa") } }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
